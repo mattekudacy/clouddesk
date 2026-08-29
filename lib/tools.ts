@@ -4,8 +4,20 @@ import type { ScenarioContext } from "./types";
 import { CERT_REGISTRY, type CertId } from "@/data/domains";
 import { pickWeakestDomain } from "./domainPriority";
 
+// problemStatement is written from a non-technical counterpart's
+// perspective (see buildScenarioPrompt) — plain English, not a service
+// name. Some product names (Functions, Front Door, Sentinel, App Service,
+// Application Gateway) are also ordinary English words/phrases a
+// non-technical person would plausibly use unprompted ("too many functions
+// to track", "the front door needs a new badge system", "a Sentinel
+// Insurance subsidiary"), so those only count as a violation when they
+// appear after an "Azure"/"Microsoft" prefix — caught by the first two
+// alternatives below, which match up to two words after the vendor name.
+// Everything else here (Cosmos DB, VNet, ExpressRoute, ...) isn't a
+// plausible thing for anyone to say by coincidence, so it's safe to match
+// bare.
 const AZURE_SERVICE_PATTERN =
-  /\b(Azure\s+\w+|Microsoft\s+\w+|Entra\s+ID|Cosmos\s*DB|SQL\s+Database|Blob\s+Storage|Service\s+Bus|Event\s+Hub|Functions|App\s+Service|AKS|ACI|Key\s+Vault|Active\s+Directory|VNet|NSG|ExpressRoute|Front\s+Door|Application\s+Gateway|Log\s+Analytics|Sentinel)\b/i;
+  /\b(Azure\s+\w+(?:\s+\w+)?|Microsoft\s+\w+(?:\s+\w+)?|Entra\s+ID|Cosmos\s*DB|SQL\s+Database|Blob\s+Storage|Service\s+Bus|Event\s+Hub|AKS|ACI|Key\s+Vault|Active\s+Directory|VNet|NSG|ExpressRoute|Log\s+Analytics)\b/i;
 
 // Takes the projection (see ScenarioContext), not the full user model —
 // session history never reaches here. See CLAUDE.md, Agent Contracts.
