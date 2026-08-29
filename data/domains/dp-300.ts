@@ -1,45 +1,42 @@
 export const DP300_DOMAINS = [
   {
     id: "plan-implement",
-    name: "Plan and Implement Data Platform Resources",
-    weight: 0.20,
-    keyServices: ["Azure SQL Database", "Azure SQL Managed Instance", "Azure Database for PostgreSQL", "Azure Database for MySQL"],
-    concepts: ["deployment options", "service tiers", "elastic pools", "migration strategies", "hybrid scenarios"],
+    name: "Plan and implement data platform resources",
+    weight: 0.17073170731707318,
+    keyServices: ["Azure SQL Database", "Azure SQL Managed Instance", "SQL Server on Azure Virtual Machines", "Azure Arc-enabled SQL services", "Microsoft Fabric"],
+    concepts: ["database offering selection", "automated deployment", "table partitioning", "sharding strategy", "scale and performance configuration", "migration strategy (online/offline)"],
   },
   {
     id: "secure-compliance",
-    name: "Implement a Secure Environment",
-    weight: 0.15,
-    keyServices: ["Azure AD authentication", "Azure Key Vault", "Transparent Data Encryption", "Always Encrypted", "Azure Defender for SQL"],
-    concepts: ["database authentication", "encryption at rest", "dynamic data masking", "auditing", "Advanced Threat Protection"],
+    name: "Implement a secure environment",
+    weight: 0.21951219512195122,
+    keyServices: ["Azure SQL Database", "Azure SQL Managed Instance", "Microsoft Entra ID", "Azure Private Link"],
+    concepts: ["authentication and authorization", "least privilege access", "encryption at rest and in transit", "row-level security and dynamic data masking", "data classification and compliance auditing"],
   },
   {
-    id: "monitor-optimize",
-    name: "Monitor and Optimize Operational Resources",
-    weight: 0.20,
-    keyServices: ["Azure Monitor", "Query Performance Insight", "Azure SQL Analytics", "Intelligent Performance"],
-    concepts: ["performance monitoring", "resource utilization", "automatic tuning", "alerts", "database advisors"],
-  },
-  {
-    id: "query-performance",
-    name: "Optimize Query Performance",
-    weight: 0.20,
-    keyServices: ["Query Store", "Execution Plans", "Index Advisor", "Automatic Tuning", "In-Memory OLTP"],
-    concepts: ["query tuning", "indexing strategies", "statistics", "execution plan analysis", "blocking and deadlocks"],
+    // New id, not a rename — Microsoft merged the previous "Monitor and
+    // Optimize Operational Resources" and "Optimize Query Performance"
+    // domains into this single objective (6 domains -> 5). Old ids
+    // monitor-optimize/query-performance are dropped; see PR description.
+    id: "performance",
+    name: "Monitor, configure, and optimize database resources",
+    weight: 0.21951219512195122,
+    keyServices: ["Azure Monitor", "Database Watcher", "Extended Events", "Query Store", "Intelligent Insights", "Resource Governor"],
+    concepts: ["performance baseline creation", "query store monitoring", "index and statistics maintenance", "session blocking identification", "resource governor configuration"],
   },
   {
     id: "tasks-automation",
-    name: "Perform Automation of Tasks",
-    weight: 0.10,
-    keyServices: ["Azure Automation", "SQL Agent", "Elastic Jobs", "Azure Logic Apps", "Azure Data Factory"],
-    concepts: ["scheduled jobs", "maintenance tasks", "index maintenance", "backup automation", "runbooks"],
+    name: "Configure and manage automation of tasks",
+    weight: 0.17073170731707318,
+    keyServices: ["SQL Server Agent", "Azure Resource Manager", "Bicep", "Azure PowerShell", "Azure CLI", "Azure Elastic Jobs"],
+    concepts: ["job scheduling", "deployment automation", "alerting and notifications", "troubleshooting deployments", "elastic job configuration"],
   },
   {
     id: "ha-dr",
-    name: "Plan and Implement High Availability and Disaster Recovery",
-    weight: 0.15,
-    keyServices: ["Always On Availability Groups", "Azure SQL Geo-Replication", "Failover Groups", "Azure Backup", "Long-Term Retention"],
-    concepts: ["RTO", "RPO", "failover", "geo-redundancy", "backup and restore", "business continuity"],
+    name: "Plan and configure a high availability and disaster recovery (HA/DR) environment",
+    weight: 0.21951219512195122,
+    keyServices: ["Azure SQL Managed Instance", "Azure Virtual Machines", "Active Geo-Replication", "Failover Groups", "Azure Monitor"],
+    concepts: ["RPO/RTO based HA/DR strategy", "hybrid deployment HA/DR evaluation", "backup and restore planning and execution", "long-term backup retention", "point-in-time restore", "testing HA/DR procedures"],
   },
 ] as const;
 
